@@ -1,10 +1,10 @@
-package Campeonato;
+package campeonato;
 
 import java.util.ArrayList;
 
-import Entidades.Clube;
+import entidades.Clube;
 
-public class Campeonato {
+public class Campeonato implements Promovivel {
 	
 	public final static int SEM_FASE = 0;
 	public final static int JOGO_UNICO = 1;
@@ -13,6 +13,7 @@ public class Campeonato {
 	private int rodadaAtual = 0;
 	private int qtdeClubesAtual;
 	private int qtdeClubesTotal;
+	private int qtdeClubesClassificados;
 	
 	private int qtdeClubesPrimeiraFase;
 	private int qtdeGruposSegundaFase;
@@ -26,20 +27,36 @@ public class Campeonato {
 	private int qtdeRod2Fase;
 	private int qtdeRod3Fase;
 	
-	private ArrayList<Clube> listaClubes;
+	//private ArrayList<Clube> listaClubes;
+	private Clube[] listaClubes;
 	
-	public Campeonato(ArrayList<Clube> clubes, 
+	public Campeonato(//ArrayList<Clube> clubes, 
+			int qtdeTimes,
 			int qtde1Fase, int qtdeGrupos2Fase,int qtde3Fase, 
 			int modo1Fase, int modo2Fase, int modo3Fase ){
 		
-		this.listaClubes = clubes;
-		this.qtdeClubesAtual = clubes.size();
+		this.qtdeClubesAtual = qtdeTimes;
+		//this.listaClubes = clubes;
+		
+		this.listaClubes = new Clube[this.qtdeClubesAtual];
+		//this.qtdeClubesAtual = clubes.size();
 		//this.qtdeClubesAtual = 16; //teste
 		this.qtdeClubesTotal = this.qtdeClubesAtual;
 		this.inicializar(qtde1Fase, qtdeGrupos2Fase, qtde3Fase, modo1Fase, modo2Fase, modo3Fase);
 		this.calcularRodadas();
 		
 	}
+	
+	public boolean addTime(Clube time){
+		if (this.qtdeClubesClassificados < this.qtdeClubesTotal){
+			this.listaClubes[this.qtdeClubesClassificados] = time;
+			this.qtdeClubesClassificados++;
+			return true;
+		}
+		return false;
+	}
+	
+	
 	
 	private void inicializar(
 			int qtde1Fase, int qtdeGrupos2Fase,int qtde3Fase, 

@@ -1,8 +1,8 @@
-package Campeonato;
+package campeonato;
 
 import java.util.ArrayList;
 
-import Entidades.Clube;
+import entidades.Clube;
 
 public class Classificacao {	
 	
@@ -44,7 +44,7 @@ public class Classificacao {
 	private boolean compOrd(int pos1, int pos2, int dim){
 		if (dim >= 5) return false;
 
-		if (this.times[pos1].dados[dim] == this.times[pos2].dados[dim]) return (this.compOrd(pos1, pos2, (dim+1)));  
+		else if (this.times[pos1].dados[dim] == this.times[pos2].dados[dim]) return (this.compOrd(pos1, pos2, (dim+1)));  
 
 		else if (this.times[pos1].dados[dim] < this.times[pos2].dados[dim]){
 			ElementoClassificavel temp = this.times[pos1];
