@@ -2,14 +2,12 @@ package entidades;
 
 import java.util.ArrayList;
 
+import nomes.NomeLiga;
 import nomes.Paises;
 
 public class Clube {
-	private int forca; //teste
-	
 	private String nome;
-	private int idClube;
-	private Paises pais;
+	private int ID_Clube;
 	private ArrayList<Jogador> jogadores;
 
 }

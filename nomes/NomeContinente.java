@@ -1,5 +1,6 @@
 package nomes;
 
 public enum NomeContinente {
-	SUL, NORTE, OESTE, LESTE;
+	LESTE, OESTE, NORTE, SUL;
+	//ASIA_ANORTE, ASUL, EUROPA, AFRICA_OCEANIA
 }

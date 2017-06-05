@@ -1,20 +1,25 @@
 package campeonato;
 
-import java.util.ArrayList;
-
 import entidades.Clube;
 
 public class Classificacao {	
 	
 	private ElementoClassificavel[] times;
-	private int qtdeTimes;
 	
-	public Classificacao(ArrayList<Clube> times){
-		this.qtdeTimes = times.size();
-		this.times = new ElementoClassificavel[this.qtdeTimes];
-		for (int i=0; i < this.qtdeTimes; i++ ){
-			this.times[i] = new ElementoClassificavel(times.get(i));
+	public Classificacao(Clube[] times){
+		this.times = new ElementoClassificavel[times.length];
+		for (int i=0; i < times.length; i++ ){
+			this.times[i] = new ElementoClassificavel(times[i]);
 		}		
+	}
+	
+	public Clube[] getTimesEntre(int inicio, int fim){
+		ordenar();
+		Clube[] timesRetorno = new Clube[fim-inicio];
+		for(int i=0; i<timesRetorno.length; i++){
+			timesRetorno[i] = times[i+inicio].clube;
+		}
+		return timesRetorno;
 	}
 	
 	private class ElementoClassificavel{
@@ -30,11 +35,11 @@ public class Classificacao {
 		}
 	}
 
-	public void Ordenar (){
+	public void ordenar (){
 		boolean alterado = true;  
 		while (alterado){
 			alterado = false;
-			for (int i = 0; i < this.qtdeTimes - 1; i++){
+			for (int i = 0; i < this.times.length - 1; i++){
 				alterado |= this.compOrd(i, i+1, 0);
 			}
 		}
